@@ -1,3 +1,4 @@
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,78 +7,176 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #fff3e6;
-  color: #333;
+  background-color: #fff;
   text-align: center;
-  padding: 20px;
-  background-image: url('https://www.publicdomainpictures.net/pictures/280000/velka/ice-cream-background-1595998087h43.jpg');
+  color: #333;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2 {
+  color: #ff9f00;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* Header Section */
+header {
+  position: relative;
+  background-color: #ff9f00;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background-image: url('https://www.publicdomainpictures.net/pictures/280000/velka/ice-cream-sundae-1595998086pyj.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
+header .hero {
+  text-align: center;
+}
+
 header h1 {
-  color: #f7a300;
-  font-size: 3em;
-  margin-bottom: 20px;
+  font-size: 4em;
+  margin-bottom: 0.2em;
 }
 
-h2 {
-  color: #fca311;
-  font-size: 2em;
+header p {
+  font-size: 1.5em;
+  margin-bottom: 1em;
 }
 
-.content {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 900px;
-  margin: 20px auto;
-}
-
-.flavor-section select,
-.ice-cream-options button {
-  padding: 10px;
-  margin: 10px;
+button {
+  padding: 15px 30px;
   font-size: 1.2em;
-  border-radius: 5px;
-  cursor: pointer;
   background-color: #ff7f11;
   border: none;
   color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #f5a623;
+}
+
+/* Main Section */
+main {
+  background-color: #fff9e5;
+  padding: 50px 20px;
+}
+
+/* Flavor Selection Section */
+.flavor-selection {
+  margin-bottom: 50px;
+}
+
+.flavor-dropdown {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 10px;
+  font-size: 1.2em;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+button#chooseButton {
+  background-color: #ff9f00;
+  border-radius: 5px;
+}
+
+/* Explore Section */
+.explore {
+  margin-bottom: 50px;
+}
+
+.ice-cream-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .ice-cream-btn {
-  background-color: #ff9e3f;
-  margin: 10px;
-  font-size: 1.1em;
+  padding: 15px 30px;
+  background-color: #ff7f11;
+  color: white;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .ice-cream-btn:hover {
-  background-color: #ff8a2b;
+  background-color: #ff8c00;
 }
 
-#selectedFlavor {
-  margin-top: 20px;
-  font-size: 1.5em;
-  color: #fca311;
-}
-
-footer {
-  margin-top: 30px;
-  font-size: 0.9em;
-  color: #fca311;
-}
-
-.ice-cream-image {
-  margin-top: 20px;
-  height: 200px;
-  width: 100%;
+/* Ice Cream Image Section */
+#iceCreamImage {
   background-size: cover;
   background-position: center;
+  height: 400px;
+  width: 100%;
+  background-color: #ffefc9;
+  margin-top: 30px;
 }
 
-.ice-cream-image p {
+#iceCreamImage p {
+  padding-top: 150px;
+  font-size: 1.5em;
+  color: #ff9f00;
+}
+
+/* Our Story Section */
+.our-story {
+  background-color: #ffb74d;
+  padding: 50px 20px;
+}
+
+.our-story p {
   font-size: 1.2em;
-  color: #333;
+  color: white;
+}
+
+button.action-btn {
+  background-color: #f5a623;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.action-btn:hover {
+  background-color: #ff7f11;
+}
+
+/* Footer Section */
+footer {
+  background-color: #ff9f00;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
