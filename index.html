@@ -15,26 +15,63 @@
     <main>
         <section id="intro">
             <h2>Welcome to the World of Custom PCs!</h2>
-            <p>Explore and design a setup that suits your style, performance needs, and budget.</p>
+            <p>Design a setup that suits your style, performance needs, and budget.</p>
         </section>
 
-        <section id="components">
-            <h2>Key Components</h2>
-            <ul>
-                <li><span class="highlight">CPU</span>: The brain of your system.</li>
-                <li><span class="highlight">GPU</span>: Unlock stunning visuals.</li>
-                <li><span class="highlight">RAM</span>: Speed up your multitasking.</li>
-                <li><span class="highlight">Storage</span>: Where everything lives.</li>
-                <li><span class="highlight">Case</span>: Show off your style!</li>
-            </ul>
+        <section id="builder">
+            <h2>Build Your PC</h2>
+            <form id="pc-builder">
+                <label for="processor">Choose a Processor:</label>
+                <select id="processor" name="processor">
+                    <option value="Intel i5">Intel i5</option>
+                    <option value="Intel i7">Intel i7</option>
+                    <option value="AMD Ryzen 5">AMD Ryzen 5</option>
+                    <option value="AMD Ryzen 7">AMD Ryzen 7</option>
+                </select>
+
+                <label for="ram">Choose RAM:</label>
+                <select id="ram" name="ram">
+                    <option value="8GB">8GB</option>
+                    <option value="16GB">16GB</option>
+                    <option value="32GB">32GB</option>
+                </select>
+
+                <label for="gpu">Choose GPU:</label>
+                <select id="gpu" name="gpu">
+                    <option value="NVIDIA RTX 3060">NVIDIA RTX 3060</option>
+                    <option value="NVIDIA RTX 3070">NVIDIA RTX 3070</option>
+                    <option value="AMD RX 6600">AMD RX 6600</option>
+                    <option value="AMD RX 6700">AMD RX 6700</option>
+                </select>
+
+                <label for="power">Choose Power Supply:</label>
+                <select id="power" name="power">
+                    <option value="500W">500W</option>
+                    <option value="650W">650W</option>
+                    <option value="750W">750W</option>
+                </select>
+
+                <label for="motherboard">Choose Motherboard:</label>
+                <select id="motherboard" name="motherboard">
+                    <option value="ATX">ATX</option>
+                    <option value="Micro ATX">Micro ATX</option>
+                    <option value="Mini ITX">Mini ITX</option>
+                </select>
+
+                <button type="button" id="build-button">Build My PC</button>
+            </form>
+
+            <div id="build-summary" style="display:none; margin-top: 20px;">
+                <h3>Your Custom PC:</h3>
+                <p id="summary"></p>
+            </div>
         </section>
 
         <section id="colors">
             <h2>Customize Your Theme</h2>
             <p>Choose your favorite theme color:</p>
-            <button class="color-btn" data-color="blue">Blue</button>
-            <button class="color-btn" data-color="green">Green</button>
-            <button class="color-btn" data-color="red">Red</button>
+            <button class="color-btn" data-color="orange">Orange</button>
+            <button class="color-btn" data-color="black">Black</button>
         </section>
     </main>
 
