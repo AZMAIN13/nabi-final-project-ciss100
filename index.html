@@ -3,125 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customize Your PC</title>
+    <title>Customize Your Dream PC</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-    <style>
-        body {
-            background: linear-gradient(45deg, orange, yellow);
-            font-family: Arial, sans-serif;
-            color: #333;
-        }
-
-        header {
-            background-color: #222;
-            color: #fff;
-            padding: 1em 0;
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1em 0;
-            background-color: #222;
-            color: #fff;
-        }
-    </style>
 </head>
 <body>
     <header>
         <h1>Customize Your Dream PC</h1>
     </header>
 
-    <main>
-        <section id="intro">
-            <h2>Welcome to the World of Custom PCs!</h2>
-            <p>Design a setup that suits your style, performance needs, and budget.</p>
-        </section>
+    <div class="config-section">
+        <h2>Build Your PC</h2>
 
-        <section id="builder">
-            <h2>Build Your PC</h2>
-            <form id="pc-builder">
-                <label for="processor">Choose a Processor:</label>
-                <select id="processor" name="processor">
-                    <option value="Intel i5" data-price="200">Intel i5 ($200)</option>
-                    <option value="Intel i7" data-price="300">Intel i7 ($300)</option>
-                    <option value="AMD Ryzen 5" data-price="250">AMD Ryzen 5 ($250)</option>
-                    <option value="AMD Ryzen 7" data-price="350">AMD Ryzen 7 ($350)</option>
-                </select>
+        <label for="processor">Choose a Processor:</label>
+        <select id="processor">
+            <option value="200">Intel i5 ($200)</option>
+            <option value="300">Intel i7 ($300)</option>
+            <option value="250">AMD Ryzen 5 ($250)</option>
+            <option value="350">AMD Ryzen 7 ($350)</option>
+        </select>
 
-                <label for="ram">Choose RAM:</label>
-                <select id="ram" name="ram">
-                    <option value="8GB" data-price="50">8GB ($50)</option>
-                    <option value="16GB" data-price="100">16GB ($100)</option>
-                    <option value="32GB" data-price="200">32GB ($200)</option>
-                </select>
+        <label for="ram">Choose RAM:</label>
+        <select id="ram">
+            <option value="50">8GB ($50)</option>
+            <option value="100">16GB ($100)</option>
+            <option value="200">32GB ($200)</option>
+        </select>
 
-                <label for="gpu">Choose GPU:</label>
-                <select id="gpu" name="gpu">
-                    <option value="NVIDIA RTX 3060" data-price="400">NVIDIA RTX 3060 ($400)</option>
-                    <option value="NVIDIA RTX 3070" data-price="600">NVIDIA RTX 3070 ($600)</option>
-                    <option value="AMD RX 6600" data-price="350">AMD RX 6600 ($350)</option>
-                    <option value="AMD RX 6700" data-price="500">AMD RX 6700 ($500)</option>
-                </select>
+        <label for="gpu">Choose GPU:</label>
+        <select id="gpu">
+            <option value="400">NVIDIA RTX 3060 ($400)</option>
+            <option value="600">NVIDIA RTX 3070 ($600)</option>
+            <option value="350">AMD RX 6600 ($350)</option>
+            <option value="500">AMD RX 6700 ($500)</option>
+        </select>
 
-                <label for="power">Choose Power Supply:</label>
-                <select id="power" name="power">
-                    <option value="500W" data-price="50">500W ($50)</option>
-                    <option value="650W" data-price="75">650W ($75)</option>
-                    <option value="750W" data-price="100">750W ($100)</option>
-                </select>
+        <label for="power">Choose Power Supply:</label>
+        <select id="power">
+            <option value="50">500W ($50)</option>
+            <option value="75">650W ($75)</option>
+            <option value="100">750W ($100)</option>
+        </select>
 
-                <label for="motherboard">Choose Motherboard:</label>
-                <select id="motherboard" name="motherboard">
-                    <option value="ATX" data-price="150">ATX ($150)</option>
-                    <option value="Micro ATX" data-price="120">Micro ATX ($120)</option>
-                    <option value="Mini ITX" data-price="100">Mini ITX ($100)</option>
-                </select>
+        <label for="motherboard">Choose Motherboard:</label>
+        <select id="motherboard">
+            <option value="150">ATX ($150)</option>
+            <option value="120">Micro ATX ($120)</option>
+            <option value="100">Mini ITX ($100)</option>
+        </select>
 
-                <button type="button" id="build-button">Build My PC</button>
-            </form>
+        <button onclick="calculateTotal()">Build My PC</button>
 
-            <div id="build-summary" style="display:none; margin-top: 20px;">
-                <h3>Your Custom PC:</h3>
-                <p id="summary"></p>
-                <p id="total-cost" style="font-weight: bold;"></p>
-            </div>
-        </section>
+        <div class="price-summary" id="total-price">
+            Total Price: $0
+        </div>
+    </div>
 
-        <section id="colors">
-            <h2>Customize Your Theme</h2>
-            <p>Choose your favorite theme color:</p>
-            <button class="color-btn" data-color="orange">Orange</button>
-            <button class="color-btn" data-color="black">Black</button>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 PC Customizer. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.getElementById('build-button').addEventListener('click', () => {
-            const form = document.getElementById('pc-builder');
-            const summaryDiv = document.getElementById('build-summary');
-            const summary = document.getElementById('summary');
-            const totalCost = document.getElementById('total-cost');
-
-            let components = [];
-            let total = 0;
-
-            form.querySelectorAll('select').forEach(select => {
-                const selectedOption = select.options[select.selectedIndex];
-                components.push(`${select.name}: ${selectedOption.value}`);
-                total += parseInt(selectedOption.dataset.price, 10);
-            });
-
-            summary.textContent = components.join(', ');
-            totalCost.textContent = `Total Estimated Cost: $${total}`;
-
-            summaryDiv.style.display = 'block';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
