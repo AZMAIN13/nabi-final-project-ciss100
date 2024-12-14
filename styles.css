@@ -1,74 +1,33 @@
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    text-align: center;
+    background: linear-gradient(45deg, #ffecd2, #ff7b00);
     color: #333;
-    line-height: 1.6;
 }
 
-/* Header */
 header {
-    background-color: #222;
-    color: #fff;
-    padding: 1em 0;
-    text-align: center;
+    background: linear-gradient(45deg, #ff7b00, #ff3d00);
+    padding: 20px;
+    color: white;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5em;
-    text-transform: uppercase;
+.config-section {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
 }
 
-/* Main Content */
-main {
-    padding: 1.5em;
-    max-width: 800px;
-    margin: 0 auto;
+.config-section select, .config-section button {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
 }
 
-section {
-    margin-bottom: 2em;
-}
-
-/* Highlights */
-.highlight {
-    color: #ff9800;
+.price-summary {
+    font-size: 20px;
     font-weight: bold;
-}
-
-/* Buttons */
-button.color-btn {
-    padding: 0.5em 1em;
-    margin: 0.5em 0.2em;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button.color-btn[data-color=\"blue\"] {
-    background-color: #2196f3;
-    color: #fff;
-}
-
-button.color-btn[data-color=\"green\"] {
-    background-color: #4caf50;
-    color: #fff;
-}
-
-button.color-btn[data-color=\"red\"] {
-    background-color: #f44336;
-    color: #fff;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 1em 0;
-    background-color: #222;
-    color: #fff;
+    margin-top: 20px;
 }
