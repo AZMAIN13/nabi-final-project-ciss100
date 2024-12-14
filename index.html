@@ -5,6 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customize Your Dream PC</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #000000, #ff7b00);
+            color: #fff;
+        }
+
+        header {
+            padding: 20px;
+            background: #ff7b00;
+            text-align: center;
+        }
+
+        .config-section {
+            margin: 20px auto;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 20px rgba(255, 123, 0, 0.8);
+        }
+
+        .config-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.2em;
+            display: block;
+            margin: 15px 0 5px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        select {
+            background: #333;
+            color: white;
+        }
+
+        button {
+            background: #ff7b00;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .price-summary {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0px 0px 10px #ff7b00;
+        }
+
+        .config-section select {
+            animation: fadeIn 0.5s;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: #000;
+            text-align: center;
+            color: #fff;
+            font-size: 1em;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,23 +108,29 @@
         <select id="processor">
             <option value="200">Intel i5 ($200)</option>
             <option value="300">Intel i7 ($300)</option>
+            <option value="400">Intel i9 ($400)</option>
             <option value="250">AMD Ryzen 5 ($250)</option>
             <option value="350">AMD Ryzen 7 ($350)</option>
+            <option value="450">AMD Ryzen 9 ($450)</option>
         </select>
 
         <label for="ram">Choose RAM:</label>
         <select id="ram">
             <option value="50">8GB ($50)</option>
             <option value="100">16GB ($100)</option>
+            <option value="150">24GB ($150)</option>
             <option value="200">32GB ($200)</option>
+            <option value="300">64GB ($300)</option>
         </select>
 
         <label for="gpu">Choose GPU:</label>
         <select id="gpu">
             <option value="400">NVIDIA RTX 3060 ($400)</option>
             <option value="600">NVIDIA RTX 3070 ($600)</option>
+            <option value="800">NVIDIA RTX 3080 ($800)</option>
             <option value="350">AMD RX 6600 ($350)</option>
             <option value="500">AMD RX 6700 ($500)</option>
+            <option value="700">AMD RX 6800 ($700)</option>
         </select>
 
         <label for="power">Choose Power Supply:</label>
@@ -42,6 +138,7 @@
             <option value="50">500W ($50)</option>
             <option value="75">650W ($75)</option>
             <option value="100">750W ($100)</option>
+            <option value="150">850W ($150)</option>
         </select>
 
         <label for="motherboard">Choose Motherboard:</label>
@@ -49,6 +146,7 @@
             <option value="150">ATX ($150)</option>
             <option value="120">Micro ATX ($120)</option>
             <option value="100">Mini ITX ($100)</option>
+            <option value="180">Extended ATX ($180)</option>
         </select>
 
         <button onclick="calculateTotal()">Build My PC</button>
@@ -56,8 +154,41 @@
         <div class="price-summary" id="total-price">
             Total Price: $0
         </div>
+
+        <div class="summary" id="summary" style="display:none;">
+            <h3>Complete Summary</h3>
+            <p id="summary-details"></p>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2024 Dream PC Builder</p>
+    </footer>
+
+    <script>
+        function calculateTotal() {
+            const processor = parseInt(document.getElementById('processor').value);
+            const ram = parseInt(document.getElementById('ram').value);
+            const gpu = parseInt(document.getElementById('gpu').value);
+            const power = parseInt(document.getElementById('power').value);
+            const motherboard = parseInt(document.getElementById('motherboard').value);
+
+            const total = processor + ram + gpu + power + motherboard;
+
+            document.getElementById('total-price').textContent = `Total Price: $${total}`;
+
+            // Generate summary
+            const processorText = document.getElementById('processor').selectedOptions[0].text;
+            const ramText = document.getElementById('ram').selectedOptions[0].text;
+            const gpuText = document.getElementById('gpu').selectedOptions[0].text;
+            const powerText = document.getElementById('power').selectedOptions[0].text;
+            const motherboardText = document.getElementById('motherboard').selectedOptions[0].text;
+
+            const summary = `Processor: ${processorText}<br>RAM: ${ramText}<br>GPU: ${gpuText}<br>Power Supply: ${powerText}<br>Motherboard: ${motherboardText}`;
+
+            document.getElementById('summary-details').innerHTML = summary;
+            document.getElementById('summary').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
