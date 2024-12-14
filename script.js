@@ -1,11 +1,16 @@
-function calculateTotal() {
-    const processor = parseInt(document.getElementById('processor').value);
-    const ram = parseInt(document.getElementById('ram').value);
-    const gpu = parseInt(document.getElementById('gpu').value);
-    const power = parseInt(document.getElementById('power').value);
-    const motherboard = parseInt(document.getElementById('motherboard').value);
+function showIcon(iconId) {
+    const selectElement = document.getElementById(iconId.replace('-icon', ''));
+    const selectedText = selectElement.options[selectElement.selectedIndex].text.split(' ')[0]; // Extract the key part of the text.
+    const componentType = iconId.split('-')[0]; // Extract component type from ID.
 
-    const total = processor + ram + gpu + power + motherboard;
+    if (iconMap[componentType] && iconMap[componentType][selectedText]) {
+        const iconSrc = iconMap[componentType][selectedText];
+        const imgElement = document.getElementById(iconId);
 
-    document.getElementById('total-price').textContent = `Total Price: $${total}`;
+        imgElement.src = iconSrc;
+        imgElement.style.display = 'inline';
+    } else {
+        console.error(`Icon for ${selectedText} not found in iconMap[${componentType}].`);
+        document.getElementById(iconId).style.display = 'none';
+    }
 }
