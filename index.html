@@ -72,6 +72,14 @@
             text-align: center;
         }
 
+        .icon {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            vertical-align: middle;
+            animation: fadeIn 0.5s;
+        }
+
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -105,7 +113,7 @@
         <h2>Build Your PC</h2>
 
         <label for="processor">Choose a Processor:</label>
-        <select id="processor">
+        <select id="processor" onchange="showIcon('processor-icon')">
             <option value="200">Intel i5 ($200)</option>
             <option value="300">Intel i7 ($300)</option>
             <option value="400">Intel i9 ($400)</option>
@@ -113,18 +121,20 @@
             <option value="350">AMD Ryzen 7 ($350)</option>
             <option value="450">AMD Ryzen 9 ($450)</option>
         </select>
+        <img id="processor-icon" class="icon" src="" style="display: none;">
 
         <label for="ram">Choose RAM:</label>
-        <select id="ram">
+        <select id="ram" onchange="showIcon('ram-icon')">
             <option value="50">8GB ($50)</option>
             <option value="100">16GB ($100)</option>
             <option value="150">24GB ($150)</option>
             <option value="200">32GB ($200)</option>
             <option value="300">64GB ($300)</option>
         </select>
+        <img id="ram-icon" class="icon" src="" style="display: none;">
 
         <label for="gpu">Choose GPU:</label>
-        <select id="gpu">
+        <select id="gpu" onchange="showIcon('gpu-icon')">
             <option value="400">NVIDIA RTX 3060 ($400)</option>
             <option value="600">NVIDIA RTX 3070 ($600)</option>
             <option value="800">NVIDIA RTX 3080 ($800)</option>
@@ -132,22 +142,25 @@
             <option value="500">AMD RX 6700 ($500)</option>
             <option value="700">AMD RX 6800 ($700)</option>
         </select>
+        <img id="gpu-icon" class="icon" src="" style="display: none;">
 
         <label for="power">Choose Power Supply:</label>
-        <select id="power">
+        <select id="power" onchange="showIcon('power-icon')">
             <option value="50">500W ($50)</option>
             <option value="75">650W ($75)</option>
             <option value="100">750W ($100)</option>
             <option value="150">850W ($150)</option>
         </select>
+        <img id="power-icon" class="icon" src="" style="display: none;">
 
         <label for="motherboard">Choose Motherboard:</label>
-        <select id="motherboard">
+        <select id="motherboard" onchange="showIcon('motherboard-icon')">
             <option value="150">ATX ($150)</option>
             <option value="120">Micro ATX ($120)</option>
             <option value="100">Mini ITX ($100)</option>
             <option value="180">Extended ATX ($180)</option>
         </select>
+        <img id="motherboard-icon" class="icon" src="" style="display: none;">
 
         <button onclick="calculateTotal()">Build My PC</button>
 
@@ -166,6 +179,58 @@
     </footer>
 
     <script>
+        const iconMap = {
+            'processor': {
+                'Intel i5': 'icons/intel-i5.png',
+                'Intel i7': 'icons/intel-i7.png',
+                'Intel i9': 'icons/intel-i9.png',
+                'AMD Ryzen 5': 'icons/ryzen-5.png',
+                'AMD Ryzen 7': 'icons/ryzen-7.png',
+                'AMD Ryzen 9': 'icons/ryzen-9.png'
+            },
+            'ram': {
+                '8GB': 'icons/ram-8gb.png',
+                '16GB': 'icons/ram-16gb.png',
+                '24GB': 'icons/ram-24gb.png',
+                '32GB': 'icons/ram-32gb.png',
+                '64GB': 'icons/ram-64gb.png'
+            },
+            'gpu': {
+                'NVIDIA RTX 3060': 'icons/rtx-3060.png',
+                'NVIDIA RTX 3070': 'icons/rtx-3070.png',
+                'NVIDIA RTX 3080': 'icons/rtx-3080.png',
+                'AMD RX 6600': 'icons/rx-6600.png',
+                'AMD RX 6700': 'icons/rx-6700.png',
+                'AMD RX 6800': 'icons/rx-6800.png'
+            },
+            'power': {
+                '500W': 'icons/power-500w.png',
+                '650W': 'icons/power-650w.png',
+                '750W': 'icons/power-750w.png',
+                '850W': 'icons/power-850w.png'
+            },
+            'motherboard': {
+                'ATX': 'icons/atx.png',
+                'Micro ATX': 'icons/micro-atx.png',
+                'Mini ITX': 'icons/mini-itx.png',
+                'Extended ATX': 'icons/extended-atx.png'
+            }
+        };
+
+        function showIcon(iconId) {
+            const selectElement = document.getElementById(iconId.replace('-icon', ''));
+            const selectedText = selectElement.options[selectElement.selectedIndex].text;
+            const iconSrc = Object.values(iconMap).find(map => map[selectedText])?.[selectedText] || '';
+
+            const imgElement = document.getElementById(iconId);
+            if (iconSrc) {
+                imgElement.src = iconSrc;
+                imgElement.style.display = 'inline';
+            } else {
+                imgElement.style.display = 'none';
+            }
+        }
+
         function calculateTotal() {
             const processor = parseInt(document.getElementById('processor').value);
             const ram = parseInt(document.getElementById('ram').value);
@@ -177,17 +242,23 @@
 
             document.getElementById('total-price').textContent = `Total Price: $${total}`;
 
-            // Generate summary
-            const processorText = document.getElementById('processor').selectedOptions[0].text;
-            const ramText = document.getElementById('ram').selectedOptions[0].text;
-            const gpuText = document.getElementById('gpu').selectedOptions[0].text;
-            const powerText = document.getElementById('power').selectedOptions[0].text;
-            const motherboardText = document.getElementById('motherboard').selectedOptions[0].text;
+            const summary = document.getElementById('summary');
+            summary.style.display = 'block';
 
-            const summary = `Processor: ${processorText}<br>RAM: ${ramText}<br>GPU: ${gpuText}<br>Power Supply: ${powerText}<br>Motherboard: ${motherboardText}`;
+            const processorText = document.getElementById('processor').options[document.getElementById('processor').selectedIndex].text;
+            const ramText = document.getElementById('ram').options[document.getElementById('ram').selectedIndex].text;
+            const gpuText = document.getElementById('gpu').options[document.getElementById('gpu').selectedIndex].text;
+            const powerText = document.getElementById('power').options[document.getElementById('power').selectedIndex].text;
+            const motherboardText = document.getElementById('motherboard').options[document.getElementById('motherboard').selectedIndex].text;
 
-            document.getElementById('summary-details').innerHTML = summary;
-            document.getElementById('summary').style.display = 'block';
+            document.getElementById('summary-details').innerHTML = `
+                <p><strong>Processor:</strong> ${processorText}</p>
+                <p><strong>RAM:</strong> ${ramText}</p>
+                <p><strong>GPU:</strong> ${gpuText}</p>
+                <p><strong>Power Supply:</strong> ${powerText}</p>
+                <p><strong>Motherboard:</strong> ${motherboardText}</p>
+                <p><strong>Total Price:</strong> $${total}</p>
+            `;
         }
     </script>
 </body>
